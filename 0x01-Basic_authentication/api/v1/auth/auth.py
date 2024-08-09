@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Auth module for api authentication management"""
+from typing import List, TypeVar
 from flask import request
 
 
