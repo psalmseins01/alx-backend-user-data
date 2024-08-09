@@ -27,6 +27,21 @@ class Auth:
             bool: True if the path is not in the excluded paths list,
             False otherwise.
         """
+        # method must be slash tolerant
+        if path and not path.endswith('/'):
+            path = path + '/'
+        # if path is not None then return true
+        if path is not None or path not in excluded_paths:
+            return True
+        # If path is None, return True
+        if path is None:
+            return True
+        # If excluded_paths is None or Empty, return True
+        if not excluded_paths or excluded_paths == []:
+            return True
+        # Returns False if path is in excluded_paths
+        if path in excluded_paths:
+            return False
         return False
 
     def authorization_header(self, request=None) -> None:
