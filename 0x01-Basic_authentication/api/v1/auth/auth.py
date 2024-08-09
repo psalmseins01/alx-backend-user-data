@@ -53,17 +53,21 @@ class Auth:
 
     def authorization_header(self, request=None) -> None:
         """
+        Function that gets the value of the Authorization header
+        from the request
+
+        Args:
+            request (request, optional): Flask request obj. Defaults to None.
+
+        Returns:
+            str: The value of the Authorization header or None if not present.
         """
         return
 
     def current_user(self, request=None) -> None:
-        """
+        """This function takes a request object as an optional argument
+        (defaults to None) and returns a value of type 'User'. The purpose
+        and how the request object is used will be determined later.
+        For now, it simply returns None.
         """
         return
-
-
-if __name__ == "__main__":
-    a = Auth()
-    print(a.require_auth("/api/v1/status/", ["/api/v1/status"]))
-    print(a.authorization_header())
-    print(a.current_user())
