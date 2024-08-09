@@ -27,7 +27,7 @@ class Auth:
             bool: True if the path is not in the excluded paths list,
             False otherwise.
         """
-        # method must be slash tolerant
+        # You can assume excluded_paths contains string path ending /
         if path and not path.endswith('/'):
             path = path + '/'
         # if path is not None then return true
