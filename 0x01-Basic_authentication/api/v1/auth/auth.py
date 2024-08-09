@@ -2,6 +2,7 @@
 """Auth module for api authentication management"""
 from flask import request
 
+
 class Auth:
     """Template for the authentication systems implemented for this app.
     """
