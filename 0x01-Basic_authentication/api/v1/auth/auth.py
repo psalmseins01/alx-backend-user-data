@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """Auth module for api authentication management"""
 from flask import request
-from typing import List, TypeVar
-
 
 class Auth:
     """Template for the authentication systems implemented for this app.
