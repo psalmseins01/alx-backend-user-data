@@ -9,7 +9,6 @@ import base64
 
 class BasicAuth(Auth):
     """Basic authentication class.
-
     Args:
         Auth (type): Class inherited from
     """
@@ -114,7 +113,7 @@ class BasicAuth(Auth):
         # Don’t forget to test all cases:
         # “what if there is no user in DB?”, etc.
         try:
-            user = User.search({"email": user_email})
+            user = User.search(attributes={"email": user_email})
         except KeyError:
             return None
         except Exception:
