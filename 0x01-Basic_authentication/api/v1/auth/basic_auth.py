@@ -100,19 +100,24 @@ class BasicAuth(Auth):
             if the user is not found or the
             password is not valid.
         """
-        # # Return None if user_email or user_pwd is None or not a string
-        if not all(map(lambda: x: isinstance(x, str), (user_email, user_pwd))):
+        # Return None if user_email is None or not a string
+        if not user_email or not isinstance(user_email, str):
             return
-        # # Search for the user in the database
+        # Return None if user_pwd is None or not a string
+        if not user_pwd or not isinstance(user_pwd, str):
+            return
+        # Return None if your database (file) doesn’t contain
+        # any User instance with email equal to user_email
+        # you should use the class method search of the User
+        # to lookup the list of users based on their email.
+        # Don’t forget to test all cases:
+        # “what if there is no user in DB?”, etc.
         try:
-            user = User.search(attributes={'email': user_email})
+            user = User.search({"email": user_email})
         except Exception:
             return
-        # What is their is no user in the database
-        if user is None:
+        if not user:
             return
-        # # Get the first user from the search results
-        user = user[0]
         if not user.is_valid_password(user_pwd):
             return
         return user
