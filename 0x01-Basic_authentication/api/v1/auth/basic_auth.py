@@ -103,10 +103,10 @@ class BasicAuth(Auth):
         """
         # Return None if user_email is None or not a string
         if not user_email or not isinstance(user_email, str):
-            return
+            return None
         # Return None if user_pwd is None or not a string
         if not user_pwd or not isinstance(user_pwd, str):
-            return
+            return None
         # Return None if your database (file) doesn’t contain
         # any User instance with email equal to user_email
         # you should use the class method search of the User
@@ -116,11 +116,11 @@ class BasicAuth(Auth):
         try:
             user = User.search({"email": user_email})
         except KeyError:
-            return
+            return None
         except Exception:
-            return
+            return None
         if not user:
-            return
+            return None
         if not user.is_valid_password(user_pwd):
-            return
+            return None
         return user
