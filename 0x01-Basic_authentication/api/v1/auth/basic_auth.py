@@ -83,7 +83,8 @@ class BasicAuth(Auth):
         # Otherwise, return the user email and the user password
         # these 2 values must be separated by a :
         try:
-            email, password = decoded_base64_authorization_header.split(':')
+            email, password = decoded_base64_authorization_header.split(
+                    ':', maxsplit=1)
         except ValueError:
             return None, None
         return email, password
