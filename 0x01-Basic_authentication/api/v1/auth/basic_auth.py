@@ -115,6 +115,8 @@ class BasicAuth(Auth):
         # “what if there is no user in DB?”, etc.
         try:
             user = User.search({"email": user_email})
+        except KeyError:
+            return
         except Exception:
             return
         if not user:
