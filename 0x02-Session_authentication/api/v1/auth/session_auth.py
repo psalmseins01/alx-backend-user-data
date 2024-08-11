@@ -3,7 +3,6 @@
 
 from base64 import b64decode
 from uuid import uuid4
-from typing import Optional
 from api.v1.auth.auth import Auth
 from models.user import User
 
@@ -17,7 +16,7 @@ class SessionAuth(Auth):
     # initialized by an empty dictionary #noqa
     user_id_by_session_id = {}
 
-    def create_session(self, user_id: str = None) -> Optional[str]:
+    def create_session(self, user_id: str = None) -> str:
         """Creates a Session ID for a user_id.
         Args:
             user_id (str, optional): user_id to create a session for.
