@@ -2,7 +2,7 @@
 """Session authentication module for the API."""
 
 from base64 import b64decode
-import uuid
+from uuid import uuid4
 from typing import Optional, TypeVar
 from api.v1.auth.auth import Auth
 from models.user import User
@@ -17,7 +17,7 @@ class SessionAuth(Auth):
     # initialized by an empty dictionary #noqa
     user_id_by_session_id = {}
 
-    def create_session(self, user_id: str = None) -> str:
+    def create_session(self, user_id: str = None) -> Optional[str]:
         """Creates a Session ID for a user_id.
         Args:
             user_id (str, optional): user_id to create a session for.
@@ -29,7 +29,7 @@ class SessionAuth(Auth):
         # Return None if user_id is not a string
         if not user_id and not isinstance(user_id, str):
             return
-        session_id = str(uuid.uuid4())
+        session_id = str(uuid4())
         # Generate a Session ID using uuid module and uuid4()
         # like id in Base
         # Store the mapping of session_id to user_id in the dictionary,
