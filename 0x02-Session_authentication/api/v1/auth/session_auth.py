@@ -3,7 +3,7 @@
 
 from base64 import b64decode
 from uuid import uuid4
-from typing import Optional, TypeVar
+from typing import Optional
 from api.v1.auth.auth import Auth
 from models.user import User
 
