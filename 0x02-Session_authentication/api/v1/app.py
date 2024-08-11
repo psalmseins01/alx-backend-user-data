@@ -36,12 +36,13 @@ def before_request() -> Optional[str]:
     # Create list of allowed_paths
     allowed_paths = ['/api/v1/status/',
                      '/api/v1/unathorized/',
-                     '/api/v1/forbidden/']
+                     '/api/v1/forbidden/',
+                     '/api/v1/auth_session/login/']
     if auth is None:
         return
     if not auth.require_auth(request.path, allowed_paths):
         return
-    if auth.authorization_header(request) is None:
+    if not auth.authorization_header(request) and auth.session_cookie(request):
         abort(401)
     if auth.current_user(request) is None:
         return abort(403)
