@@ -51,6 +51,6 @@ class Auth:
             pass
         hashed_pwd = _hash_password(password)
         new_user = self._db.add_user(
-                email=email, hashed_password=hashed_pwd.decode("utf-8"))
+                email=email, hashed_password=hashed_pwd)
         self._db
         return new_user
