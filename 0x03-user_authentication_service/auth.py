@@ -31,6 +31,7 @@ class Auth:
 
     def __init__(self):
         self._db = DB()
+    
 
     def register_user(self, email: str, password: str) -> User:
         """Registers a new user with the given email and password.
@@ -40,16 +41,18 @@ class Auth:
         Returns:
             User: A User object representing the newly created user.
         Raises:
-            ValueError: If a user with the given email already exist
+            ValueError: If a user with the given email already exists.
         """
         try:
-            check_user = self._db.find_user_by(email=email)
-
-            if check_user:
-                raise ValueError(f"User {email} already exists")
+            # Search for the user by email
+            self._db.find_user_by(email=email)
+            # If a user already exist with the passed email, raise a ValueError
+            raise ValueError(f"User {email} already exists")
         except NoResultFound:
             pass
+        # If not, hash the password with _hash_password
         hashed_password = _hash_password(password)
-        user = self._db.add_user(
-                email=email, hashed_password=hashed_password)
+        # Save the user to the database using self._db
+        user = self._db.add_user(email, hashed_password)
+        # Return the User object
         return user
